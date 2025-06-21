@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "nome": "Coxinha de Frango",
+    "tipo": "grande",
+    "preco_unitario": 7,
+    "preco_cento": 70,
+    "limite": 10,
+    "estoque": 30,
+    "estoqueOff": false
+  },
+  {
+    "id": 2,
+    "nome": "Bolinha de Queijo",
+    "tipo": "grande",
+    "preco_unitario": 7,
+    "preco_cento": 70,
+    "limite": 10,
+    "estoque": 25,
+    "estoqueOff": false
+  },
+  {
+    "id": 3,
+    "nome": "Kibe",
+    "tipo": "grande",
+    "preco_unitario": 7,
+    "preco_cento": 70,
+    "limite": 10,
+    "estoque": 20,
+    "estoqueOff": false
+  },
+  {
+    "id": 4,
+    "nome": "Empada de Frango",
+    "tipo": "grande",
+    "preco_unitario": 7,
+    "preco_cento": 70,
+    "limite": 10,
+    "estoque": 15,
+    "estoqueOff": false
+  },
+  {
+    "id": 5,
+    "nome": "Mini Pizza",
+    "tipo": "mini",
+    "preco_unitario": 1.5,
+    "preco_cento": 80,
+    "limite": 50,
+    "estoque": 60,
+    "estoqueOff": false
+  },
+  {
+    "id": 6,
+    "nome": "Empadinha",
+    "tipo": "mini",
+    "preco_unitario": 1.5,
+    "preco_cento": 80,
+    "limite": 100,
+    "estoque": 100,
+    "estoqueOff": false
+  },
+  {
+    "id": 7,
+    "nome": "Pastel de Carne",
+    "tipo": "grande",
+    "preco_unitario": 7,
+    "preco_cento": 70,
+    "limite": 10,
+    "estoque": 18,
+    "estoqueOff": false
+  },
+  {
+    "id": 8,
+    "nome": "Risoles Presunto e Queijo",
+    "tipo": "grande",
+    "preco_unitario": 7,
+    "preco_cento": 70,
+    "limite": 10,
+    "estoque": 10,
+    "estoqueOff": false
+  },
+  {
+    "id": 9,
+    "nome": "Esfiha de Carne",
+    "tipo": "grande",
+    "preco_unitario": 7,
+    "preco_cento": 70,
+    "limite": 10,
+    "estoque": 0,
+    "estoqueOff": true
+  },
+  {
+    "id": 10,
+    "nome": "Cento de Salgado Misto (sortido)",
+    "tipo": "cento_misto",
+    "preco_unitario": 70,
+    "preco_cento": 70,
+    "limite": 10,
+    "estoque": 20,
+    "estoqueOff": false
+  }
+]

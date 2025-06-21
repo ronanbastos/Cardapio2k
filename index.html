@@ -1,0 +1,52 @@
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&R Salgado - Cardápio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="brand-name">R&R Salgado</div>
+        <h1>Nosso Cardápio</h1>
+        <p>Escolha seus salgados favoritos e faça seu pedido!</p>
+    </header>
+
+    <main>
+        <section class="menu-section">
+            <h2>Salgados por Unidade</h2>
+            <div id="cardapio-grande" class="cardapio-grid">
+                <!-- Itens grandes serão inseridos aqui -->
+            </div>
+        </section>
+
+        <section class="menu-section">
+            <h2>Salgados por Cento</h2>
+            <p class="section-description">Escolha os tipos de salgados. Cada item abaixo representa um cento (100 unidades) ou um pacote fechado.</p>
+            <div id="cardapio-cento" class="cardapio-grid">
+                <!-- Centos de salgados serão inseridos aqui -->
+            </div>
+        </section>
+    </main>
+
+    <div class="checkout-container">
+        <div class="total-section">
+            <span class="total-label">Total:</span>
+            <span class="total-value">R$ <span id="total">0.00</span></span>
+        </div>
+        <button id="finalizar">
+            <i class="fab fa-whatsapp"></i> Finalizar Pedido
+        </button>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 R&R Salgado.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
