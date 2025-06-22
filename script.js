@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cardapio = data.filter(item => item.estoque > 0);
         
         cardapio.forEach(item => {
-          carrinho[item.id] = 0;
+          carrinho[item.id] = 0; // Initialize base quantities
         });
         
         montarCardapio();
@@ -45,7 +45,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const avisoEncomendaCento = `<div class="encomenda-info">Acima de 2 centos, favor encomendar via WhatsApp.</div>`;
         
         if (item.tipo === 'mini') {
-            const precoDezena = item.preco_unitario * 10;
+            // As per user's latest instruction: "10 salgado pequeno por 0.70" -> 10 * 0.70 = 7.00
+            const precoDezena = 7.00; 
             
             // Card para Pacote com 10 unidades
             const maxDezenas = Math.floor(item.estoque / 10);
@@ -89,9 +90,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 pacoteContainer.appendChild(elCento);
             }
         } else if (item.tipo === 'cento_misto') {
-             const el = document.createElement("div");
-             el.className = "item";
-             el.innerHTML = `
+             // Card for Cento de Salgado Misto
+             const elCento = document.createElement("div");
+             elCento.className = "item";
+             elCento.innerHTML = `
               <div class="item-info">
                 <h3>${item.nome}</h3>
                 <div class="preco">R$${item.preco_unitario.toFixed(2)} o cento</div>
@@ -104,7 +106,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 <button onclick="alterarQuantidade(${item.id}, 1, true)" id="mais-${item.id}-misto">+</button>
               </div>
             `;
-            pacoteContainer.appendChild(el);
+            pacoteContainer.appendChild(elCento);
+
+            // NEW: Card for Pacote com 10 de Salgado Misto
+            const precoDezenaMisto = 7.00; // 10 * 0.70 as per prompt
+            const maxDezenasMisto = item.estoque * 10; // If item.estoque is in centos, then * 10 for dezenas
+            if (maxDezenasMisto >= 1) {
+                const elDezenaMisto = document.createElement("div");
+                elDezenaMisto.className = "item";
+                elDezenaMisto.innerHTML = `
+                  <div class="item-info">
+                    <h3>${item.nome} (Pacote c/ 10)</h3>
+                    <div class="preco">R$${precoDezenaMisto.toFixed(2)} o pacote</div>
+                    <div class="stock-info">Estoque para ${maxDezenasMisto} pacote(s)</div>
+                    ${avisoEncomenda}
+                  </div>
+                  <div class="controles">
+                    <button onclick="alterarQuantidadeDezenaMisto(${item.id}, -1)" id="menos-dezena-misto-${item.id}">-</button>
+                    <div class="quantidade" id="qtd-dezena-misto-${item.id}">0</div>
+                    <button onclick="alterarQuantidadeDezenaMisto(${item.id}, 1)" id="mais-dezena-misto-${item.id}">+</button>
+                  </div>
+                `;
+                pacoteContainer.appendChild(elDezenaMisto);
+            }
         }
       });
 
@@ -136,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const item = cardapio.find(i => i.id === id);
         if (!item) return;
 
-        const cartKey = `${id}_dezena`;
+        const cartKey = `${id}_dezena`; // For mini items
         if(carrinho[cartKey] === undefined) carrinho[cartKey] = 0;
 
         const maxDezenas = Math.floor(item.estoque / 10);
@@ -147,6 +171,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
         carrinho[cartKey] = novasDezenas;
         document.getElementById(`qtd-dezena-${id}`).innerText = novasDezenas;
+
+        atualizarBotoes();
+        atualizarTotal();
+    };
+
+    window.alterarQuantidadeDezenaMisto = function(id, delta) {
+        const item = cardapio.find(i => i.id === id); // This should be the cento_misto item
+        if (!item) return;
+
+        const cartKey = `${id}_dezena_misto`; // For cento_misto items 10-pack
+        if(carrinho[cartKey] === undefined) carrinho[cartKey] = 0;
+
+        // For cento_misto (item.estoque is in centos), so 20 centos = 200 dezenas
+        const maxDezenasMisto = item.estoque * 10;
+        
+        let novasDezenas = carrinho[cartKey] + delta;
+        if (novasDezenas < 0) novasDezenas = 0;
+        if (novasDezenas > maxDezenasMisto) novasDezenas = maxDezenasMisto;
+
+        carrinho[cartKey] = novasDezenas;
+        document.getElementById(`qtd-dezena-misto-${id}`).innerText = novasDezenas;
 
         atualizarBotoes();
         atualizarTotal();
@@ -184,12 +229,23 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         
         if (item.tipo === 'cento_misto') {
-            const cartKeyMisto = `${item.id}_misto`;
-            const qtdMisto = carrinho[cartKeyMisto] || 0;
-            const menosBtnMisto = document.getElementById(`menos-${item.id}-misto`);
-            const maisBtnMisto = document.getElementById(`mais-${item.id}-misto`);
-            if(menosBtnMisto) menosBtnMisto.disabled = qtdMisto <= 0;
-            if(maisBtnMisto) maisBtnMisto.disabled = qtdMisto >= item.estoque;
+            const cartKeyMistoCento = `${item.id}_misto`; // For cento (mixed)
+            const qtdMistoCento = carrinho[cartKeyMistoCento] || 0;
+            const menosBtnMistoCento = document.getElementById(`menos-${item.id}-misto`);
+            const maisBtnMistoCento = document.getElementById(`mais-${item.id}-misto`);
+            if(menosBtnMistoCento) menosBtnMistoCento.disabled = qtdMistoCento <= 0;
+            if(maisBtnMistoCento) maisBtnMistoCento.disabled = qtdMistoCento >= item.estoque; // item.estoque is max centos
+            
+            // NEW: Dezena buttons for cento_misto
+            const cartKeyDezenaMisto = `${item.id}_dezena_misto`;
+            const currentDezenasMisto = carrinho[cartKeyDezenaMisto] || 0;
+            const maxDezenasMisto = item.estoque * 10; // If item.estoque is in centos, then * 10 for dezenas
+            if (maxDezenasMisto >= 1) {
+                const menosBtnDezenaMisto = document.getElementById(`menos-dezena-misto-${item.id}`);
+                const maisBtnDezenaMisto = document.getElementById(`mais-dezena-misto-${item.id}`);
+                if (menosBtnDezenaMisto) menosBtnDezenaMisto.disabled = currentDezenasMisto <= 0;
+                if (maisBtnDezenaMisto) maisBtnDezenaMisto.disabled = currentDezenasMisto >= maxDezenasMisto;
+            }
         } 
         
         if (item.tipo === 'mini') {
@@ -229,10 +285,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if(item) {
             if (type === 'cento') {
                 total += qtd * item.preco_cento;
-            } else if (type === 'dezena') {
-                total += qtd * (item.preco_unitario * 10);
-            } else if (type === 'misto') {
-                total += qtd * item.preco_unitario;
+            } else if (type === 'dezena') { // For mini items 10-pack
+                total += qtd * 7.00; 
+            } else if (type === 'dezena_misto') { // For cento_misto 10-pack
+                total += qtd * 7.00;
+            } else if (type === 'misto') { // For cento_misto cento
+                total += qtd * item.preco_unitario; // preco_unitario for cento_misto is the cento price
             } else if (type === 'unidade') {
                 total += qtd * item.preco_unitario;
             }
@@ -257,11 +315,15 @@ document.addEventListener("DOMContentLoaded", () => {
               const subtotal = qtd * item.preco_cento;
               mensagem += `• ${item.nome} (cento): ${qtd} cento(s) (R$${subtotal.toFixed(2)})\n`;
               total += subtotal;
-          } else if (type === 'dezena') {
-              const subtotal = qtd * (item.preco_unitario * 10);
+          } else if (type === 'dezena') { // For mini items 10-pack
+              const subtotal = qtd * 7.00; 
               mensagem += `• ${item.nome} (pacote c/ 10): ${qtd} pacote(s) (R$${subtotal.toFixed(2)})\n`;
               total += subtotal;
-          } else if (type === 'misto') {
+          } else if (type === 'dezena_misto') { // For cento_misto 10-pack
+              const subtotal = qtd * 7.00;
+              mensagem += `• ${item.nome} (pacote c/ 10): ${qtd} pacote(s) (R$${subtotal.toFixed(2)})\n`;
+              total += subtotal;
+          } else if (type === 'misto') { // For cento_misto cento
               const subtotal = item.preco_unitario * qtd;
               mensagem += `• ${item.nome}: ${qtd} cento(s) (R$${subtotal.toFixed(2)})\n`;
               total += subtotal;
