@@ -326,7 +326,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       mensagem += `\n💰 *Total: R$${total.toFixed(2)}*`;
-      mensagem += `\n\n🔑 *PIX:* [Favor informar sua chave PIX na conversa]`;
+      mensagem += `\n\n🔑 *PIX:* [Favor aguarde a confirmação da chave Pix]`;
 
       const numero = "5521979744099"; // Número de WhatsApp para receber o pedido
       const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
