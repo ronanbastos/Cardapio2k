@@ -31,9 +31,9 @@
   },
   {
     "id": 4,
-    "nome": "Empada",
+    "nome": "Empada de Frango",
     "tipo": "grande",
-    "preco_unitario": 1.50,
+    "preco_unitario": 7,
     "preco_cento": 70,
     "limite": 10,
     "estoque": 15,
