@@ -39,8 +39,18 @@
     "estoque": 15,
     "estoqueOff": false
   },
-  {
+  }
     "id": 5,
+    "nome": "Empada Pequena",
+    "tipo": "pequena",
+    "preco_unitario": 1.50,
+    "preco_cento": 70,
+    "limite": 10,
+    "estoque": 15,
+    "estoqueOff": false
+  },
+  {
+    "id": 6,
     "nome": "Mini Pizza",
     "tipo": "mini",
     "preco_unitario": 1.5,
@@ -50,7 +60,7 @@
     "estoqueOff": false
   },
   {
-    "id": 6,
+    "id": 7,
     "nome": "Empadinha",
     "tipo": "mini",
     "preco_unitario": 1.5,
@@ -60,7 +70,7 @@
     "estoqueOff": false
   },
   {
-    "id": 7,
+    "id": 8,
     "nome": "Pastel de Carne",
     "tipo": "grande",
     "preco_unitario": 7,
@@ -70,7 +80,7 @@
     "estoqueOff": false
   },
   {
-    "id": 8,
+    "id": 9,
     "nome": "Risoles Presunto e Queijo",
     "tipo": "grande",
     "preco_unitario": 7,
@@ -80,7 +90,7 @@
     "estoqueOff": false
   },
   {
-    "id": 9,
+    "id": 10,
     "nome": "Esfiha de Carne",
     "tipo": "grande",
     "preco_unitario": 7,
@@ -90,7 +100,7 @@
     "estoqueOff": true
   },
   {
-    "id": 10,
+    "id": 11,
     "nome": "Cento de Salgado Misto (sortido)",
     "tipo": "cento_misto",
     "preco_unitario": 70,
