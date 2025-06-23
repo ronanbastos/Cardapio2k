@@ -44,7 +44,7 @@
     "nome": "Mini Pizza",
     "tipo": "mini",
     "preco_unitario": 1.5,
-    "preco_cento": 85,
+    "preco_cento": 80,
     "limite": 50,
     "estoque": 60,
     "estoqueOff": false
@@ -54,7 +54,7 @@
     "nome": "Empadinha",
     "tipo": "mini",
     "preco_unitario": 1.5,
-    "preco_cento": 85,
+    "preco_cento": 80,
     "limite": 100,
     "estoque": 100,
     "estoqueOff": false
