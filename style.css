@@ -147,10 +147,11 @@ main {
     color: var(--dark-text);
 }
 
-.preco {
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: var(--primary-color); /* Changed from secondary */
+.item-price {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-top: 0.5rem;
     margin-bottom: 1rem;
 }
 
@@ -170,6 +171,14 @@ main {
     border: 1px solid #eee;
     border-radius: 10px;
     background-color: var(--background-color);
+}
+
+.item-price-option {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--dark-text);
+    margin-bottom: 0.5rem;
+    text-align: center;
 }
 
 .controles {

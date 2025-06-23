@@ -28,7 +28,7 @@
     "nome": "Empada de Frango",
     "tipo": "grande",
     "preco_unitario": 7,
-    "preco_cento": 70,
+    "preco_cento": 85,
     "limite": 10
   },
   {
@@ -36,15 +36,15 @@
     "nome": "Mini Pizza",
     "tipo": "mini",
     "preco_unitario": 0.7,
-    "preco_cento": 70,
+    "preco_cento": 85,
     "limite": 50
   },
   {
     "id": 6,
     "nome": "Empadinha",
     "tipo": "mini",
-    "preco_unitario": 0.7,
-    "preco_cento": 70,
+    "preco_unitario": 1.5,
+    "preco_cento": 150,
     "limite": 100
   },
   {

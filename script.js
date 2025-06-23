@@ -83,7 +83,7 @@ function updateCartSummary() {
             whatsappMessage += `${entry.quantity}x ${entry.name} (${entry.unit}) - R$${(entry.quantity * entry.price).toFixed(2)}\n`;
         });
         whatsappMessage += `\nTotal: R$${totalPrice.toFixed(2)}`;
-        fazerPedidoBtn.innerHTML = `<i class="fab fa-whatsapp"></i> Fazer Pedido (${totalItems} itens) - R$${totalPrice.toFixed(2)}`;
+        fazerPedidoBtn.innerHTML = `<i class="fab fa-whatsapp"></i> Fazer Pedido (${totalItems} itens)`; // Display only total items
         fazerPedidoBtn.disabled = false;
     }
 
@@ -116,7 +116,6 @@ function montarCardapio(cardapio) {
 
             controlsHtml = `
                 <div class="control-set">
-                    <div class="preco">R$${item.preco_unitario.toFixed(2)} / unidade</div>
                     <div class="controles">
                         <button id="minus-${item.id}-unit" data-id="${item.id}" data-type="unit" class="minus-btn" ${currentQty === 0 ? 'disabled' : ''}>-</button>
                         <div class="quantidade" id="qty-${item.id}-unit">${currentQty}</div>
@@ -128,6 +127,7 @@ function montarCardapio(cardapio) {
             itemHtml.innerHTML = `
                 <div class="item-info">
                     <h3>${item.nome}</h3>
+                    <div class="item-price">R$${item.preco_unitario.toFixed(2)} a unidade</div>
                 </div>
                 <div class="controles-group">
                     ${controlsHtml}
@@ -138,15 +138,12 @@ function montarCardapio(cardapio) {
             const currentPackQty = cart.has(`${item.id}_pack10`) ? cart.get(`${item.id}_pack10`).quantity : 0;
             const currentCentoQty = cart.has(`${item.id}_cento`) ? cart.get(`${item.id}_cento`).quantity : 0;
             
-            const pack10Price = (item.preco_unitario * 10).toFixed(2);
-            const centoPrice = item.preco_cento.toFixed(2);
-
             const effectivePackLimit = Math.floor(item.limite / 10);
             const effectiveCentoLimit = Math.floor(item.limite / 100);
 
             controlsHtml = `
                 <div class="control-set">
-                    <div class="preco">R$${pack10Price} / pacote c/ 10</div>
+                    <div class="item-price-option">R$${(item.preco_unitario * 10).toFixed(2)} o pacote c/ 10</div>
                     <div class="controles">
                         <button id="minus-${item.id}-pack10" data-id="${item.id}" data-type="pack10" class="minus-btn" ${currentPackQty === 0 ? 'disabled' : ''}>-</button>
                         <div class="quantidade" id="qty-${item.id}-pack10">${currentPackQty}</div>
@@ -154,7 +151,7 @@ function montarCardapio(cardapio) {
                     </div>
                 </div>
                 <div class="control-set">
-                    <div class="preco">R$${centoPrice} / o cento</div>
+                    <div class="item-price-option">R$${item.preco_cento.toFixed(2)} o cento</div>
                     <div class="controles">
                         <button id="minus-${item.id}-cento" data-id="${item.id}" data-type="cento" class="minus-btn" ${currentCentoQty === 0 ? 'disabled' : ''}>-</button>
                         <div class="quantidade" id="qty-${item.id}-cento">${currentCentoQty}</div>
@@ -178,7 +175,6 @@ function montarCardapio(cardapio) {
 
             controlsHtml = `
                 <div class="control-set">
-                    <div class="preco">R$${item.preco_cento.toFixed(2)} / o cento</div>
                     <div class="controles">
                         <button id="minus-${item.id}-cento" data-id="${item.id}" data-type="cento" class="minus-btn" ${currentCentoQty === 0 ? 'disabled' : ''}>-</button>
                         <div class="quantidade" id="qty-${item.id}-cento">${currentCentoQty}</div>
@@ -189,6 +185,7 @@ function montarCardapio(cardapio) {
             itemHtml.innerHTML = `
                 <div class="item-info">
                     <h3>${item.nome}</h3>
+                    <div class="item-price">R$${item.preco_cento.toFixed(2)} o cento</div>
                 </div>
                 <div class="controles-group">
                     ${controlsHtml}
