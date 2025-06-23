@@ -52,20 +52,6 @@ header p {
     opacity: 0.9;
 }
 
-#info-retirada {
-    background-color: rgba(0, 0, 0, 0.2);
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
-    margin-top: 1rem;
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-#info-retirada i {
-    margin-right: 0.5rem;
-}
-
 main {
     padding: 2rem;
     max-width: 1200px;
@@ -115,29 +101,8 @@ main {
     box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
 
-.item.out-of-stock {
-    opacity: 0.6;
-    background-color: #f8f9fa;
-}
-
-.item.out-of-stock::after {
-    content: 'Indisponível';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-15deg);
-    background-color: rgba(255, 0, 0, 0.7);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    font-weight: bold;
-    z-index: 10;
-    display: none; /* Hide out-of-stock overlay */
-}
-
 .item-info {
     flex-grow: 1;
-    margin-bottom: 1rem;
 }
 
 .item h3 {
@@ -150,26 +115,8 @@ main {
 .preco {
     font-size: 1.1rem;
     font-weight: 500;
-    color: var(--primary-color); /* Changed from secondary */
+    color: var(--secondary-color);
     margin-bottom: 1rem;
-}
-
-.controles-group {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem; /* Space between different purchase options (e.g., pack10 and cento) */
-    width: 100%;
-}
-
-.control-set {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem;
-    border: 1px solid #eee;
-    border-radius: 10px;
-    background-color: var(--background-color);
 }
 
 .controles {
@@ -177,7 +124,8 @@ main {
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    margin: 0; /* Removed existing margin-top/bottom */
+    margin: 1rem 0;
+    margin-top: auto;
 }
 
 .controles button {
@@ -215,7 +163,7 @@ main {
 }
 
 .encomenda-info {
-    font-size: 0.85em;
+    font-size: 0.8em;
     color: var(--primary-color);
     font-weight: 500;
     margin-top: 0.75rem;
@@ -223,26 +171,12 @@ main {
     background-color: #fff3e0;
     border-radius: 8px;
     border: 1px dashed var(--primary-color);
-    width: fit-content;
-    align-self: center;
 }
 
 .stock-info {
-    font-size: 0.85em;
+    font-size: 0.8em;
     color: var(--subtle-text);
     margin-top: 0.5rem;
-    background-color: #f0f0f0;
-    border-radius: 5px;
-    padding: 0.2rem 0.5rem;
-    width: fit-content;
-    align-self: center;
-    display: none; /* Hide stock info */
-}
-
-.item.out-of-stock .controles button {
-    cursor: not-allowed;
-    background-color: #ccc !important;
-    transform: none !important;
 }
 
 .checkout-container {
@@ -254,13 +188,27 @@ main {
     padding: 1rem 2rem;
     box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 }
 
-#fazer-pedido {
+.total-section {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.total-label {
+    color: var(--subtle-text);
+}
+
+.total-value {
+    color: var(--secondary-color);
+    font-size: 1.4rem;
+}
+
+#finalizar {
     background-color: var(--whatsapp-color);
     color: var(--light-text);
     border: none;
@@ -273,16 +221,13 @@ main {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    width: 100%;
-    max-width: 400px;
-    justify-content: center;
 }
 
-#fazer-pedido:hover {
+#finalizar:hover {
     background-color: #128C7E;
 }
 
-#fazer-pedido i {
+#finalizar i {
     font-size: 1.2rem;
 }
 
@@ -333,7 +278,7 @@ footer {
         gap: 1rem;
         padding: 1rem;
     }
-    #fazer-pedido {
+    #finalizar {
         width: 100%;
         justify-content: center;
         padding: 1rem;

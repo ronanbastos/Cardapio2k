@@ -14,37 +14,32 @@
         <div class="brand-name">R&R Salgado</div>
         <h1>Nosso Cardápio</h1>
         <p>Escolha seus salgados favoritos e faça seu pedido!</p>
-        <div id="info-retirada">
-            <i class="fa-solid fa-clock"></i> <span>Apenas para retirada</span>
-        </div>
     </header>
 
     <main>
         <section class="menu-section">
-            <h2>Salgados Grandes (Unidade)</h2>
-            <div id="cardapio-grande" class="cardapio-grid">
+            <h2>Salgados por Unidade</h2>
+            <div id="cardapio-unidade" class="cardapio-grid">
                 <!-- Itens por unidade serão inseridos aqui -->
             </div>
         </section>
 
         <section class="menu-section">
-            <h2>Salgados Pequenos (Pacotes e Centos)</h2>
-            <div id="cardapio-pequeno" class="cardapio-grid">
+            <h2>Salgados por Pacote</h2>
+            <p class="section-description">Escolha os tipos de salgados. Cada item abaixo representa um cento (100 unidades) ou um pacote fechado.</p>
+            <div id="cardapio-pacote" class="cardapio-grid">
                 <!-- Pacotes de salgados serão inseridos aqui -->
-            </div>
-        </section>
-        
-        <section class="menu-section">
-            <h2>Salgados Mistos</h2>
-            <div id="cardapio-misto" class="cardapio-grid">
-                <!-- Pacotes de salgados mistos serão inseridos aqui -->
             </div>
         </section>
     </main>
 
     <div class="checkout-container">
-        <button id="fazer-pedido">
-            <i class="fab fa-whatsapp"></i> Fazer Pedido via WhatsApp
+        <div class="total-section">
+            <span class="total-label">Total:</span>
+            <span class="total-value">R$ <span id="total">0.00</span></span>
+        </div>
+        <button id="finalizar">
+            <i class="fab fa-whatsapp"></i> Finalizar Pedido
         </button>
     </div>
 
